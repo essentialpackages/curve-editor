@@ -1,6 +1,6 @@
-﻿using UnityEditor;
+﻿using EssentialPackages.CurveEditor.Editor.Utils;
+using UnityEditor;
 using UnityEditorInternal;
-using UnityEngine;
 
 namespace EssentialPackages.CurveEditor.Editor
 {
@@ -9,8 +9,6 @@ namespace EssentialPackages.CurveEditor.Editor
 	{
 		private ReorderableList _list;
 
-		private static float CurrentViewWidth => EditorGUIUtility.currentViewWidth;
-		private static float LabelWidth => EditorGUIUtility.labelWidth;
 		private static float SingleLineHeight => EditorGUIUtility.singleLineHeight;
 
 		private void OnEnable()
@@ -25,44 +23,20 @@ namespace EssentialPackages.CurveEditor.Editor
 				var element = _list.serializedProperty.GetArrayElementAtIndex(index);
 				rect.y += SingleLineHeight / 2;
 
-				CreateField(
+				Inspector.CreateField(
 					rect,
 					0,
 					element.FindPropertyRelative("_name"),
 					"_name"
 				);
 				
-				CreateField(
+				Inspector.CreateField(
 					rect,
 					SingleLineHeight,
 					element.FindPropertyRelative("_animationCurve"),
 					"_animationCurve"
 				);
 			};
-		}
-
-		private static void CreateField(Rect rect, float offsetY, SerializedProperty property, string propertyName)
-		{
-			EditorGUI.LabelField(
-				new Rect(
-					rect.x,
-					rect.y + offsetY,
-					LabelWidth - 5,
-					SingleLineHeight
-				),
-				ObjectNames.NicifyVariableName(propertyName)
-			);
-				
-			EditorGUI.PropertyField(
-				new Rect(
-					rect.x + LabelWidth,
-					rect.y + offsetY,
-					CurrentViewWidth - 60 - LabelWidth,
-					SingleLineHeight
-				),
-				property,
-				GUIContent.none
-			);
 		}
 
 		public override void OnInspectorGUI()
