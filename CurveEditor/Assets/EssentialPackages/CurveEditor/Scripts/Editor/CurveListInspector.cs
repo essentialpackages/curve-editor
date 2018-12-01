@@ -23,13 +23,13 @@ namespace EssentialPackages.CurveEditor.Editor
 				var element = _list.serializedProperty.GetArrayElementAtIndex(index);
 				rect.y += SingleLineHeight / 2;
 
-				Inspector.CreateField(
+				Inspector.CreatePropertyField(
 					rect,
 					0,
 					element.FindPropertyRelative("_name")
 				);
 				
-				Inspector.CreateField(
+				Inspector.CreatePropertyField(
 					rect,
 					SingleLineHeight,
 					element.FindPropertyRelative("_animationCurve")
