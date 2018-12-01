@@ -9,40 +9,60 @@ namespace EssentialPackages.CurveEditor.Editor
 	{
 		private ReorderableList _list;
 
+		private static float CurrentViewWidth => EditorGUIUtility.currentViewWidth;
+		private static float LabelWidth => EditorGUIUtility.labelWidth;
+		private static float SingleLineHeight => EditorGUIUtility.singleLineHeight;
+
 		private void OnEnable()
 		{
 			var property = serializedObject.FindProperty("_curve");
 			_list = new ReorderableList(serializedObject, property, true, true, true, true);
 
-			_list.elementHeight = 3 * EditorGUIUtility.singleLineHeight;
-
+			_list.elementHeight = 3 * SingleLineHeight;
+			
 			_list.drawElementCallback = (rect, index, active, focused) =>
 			{
 				var element = _list.serializedProperty.GetArrayElementAtIndex(index);
-				rect.y += EditorGUIUtility.singleLineHeight / 2;
+				rect.y += SingleLineHeight / 2;
 
-				EditorGUI.LabelField(
-					new Rect(rect.x, rect.y, EditorGUIUtility.labelWidth - 5, EditorGUIUtility.singleLineHeight), "Name"
-					
-				);
-				
-				EditorGUI.PropertyField(
-					new Rect(rect.x + EditorGUIUtility.labelWidth, rect.y, EditorGUIUtility.currentViewWidth - 60 - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight),
+				CreateField(
+					rect,
+					0,
 					element.FindPropertyRelative("_name"),
-					GUIContent.none
+					"_name"
 				);
 				
-				EditorGUI.LabelField(
-					new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight, EditorGUIUtility.labelWidth - 5, EditorGUIUtility.singleLineHeight), "AnimationCurve"
-					
-				);
-				
-				EditorGUI.PropertyField(
-					new Rect(rect.x + EditorGUIUtility.labelWidth, rect.y + EditorGUIUtility.singleLineHeight, EditorGUIUtility.currentViewWidth - 60 - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight),
+				CreateField(
+					rect,
+					SingleLineHeight,
 					element.FindPropertyRelative("_animationCurve"),
-					GUIContent.none
+					"_animationCurve"
 				);
 			};
+		}
+
+		private static void CreateField(Rect rect, float offsetY, SerializedProperty property, string propertyName)
+		{
+			EditorGUI.LabelField(
+				new Rect(
+					rect.x,
+					rect.y + offsetY,
+					LabelWidth - 5,
+					SingleLineHeight
+				),
+				ObjectNames.NicifyVariableName(propertyName)
+			);
+				
+			EditorGUI.PropertyField(
+				new Rect(
+					rect.x + LabelWidth,
+					rect.y + offsetY,
+					CurrentViewWidth - 60 - LabelWidth,
+					SingleLineHeight
+				),
+				property,
+				GUIContent.none
+			);
 		}
 
 		public override void OnInspectorGUI()
