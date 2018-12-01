@@ -26,15 +26,13 @@ namespace EssentialPackages.CurveEditor.Editor
 				Inspector.CreateField(
 					rect,
 					0,
-					element.FindPropertyRelative("_name"),
-					"_name"
+					element.FindPropertyRelative("_name")
 				);
 				
 				Inspector.CreateField(
 					rect,
 					SingleLineHeight,
-					element.FindPropertyRelative("_animationCurve"),
-					"_animationCurve"
+					element.FindPropertyRelative("_animationCurve")
 				);
 			};
 		}

@@ -9,7 +9,7 @@ namespace EssentialPackages.CurveEditor.Editor.Utils
 		private static float LabelWidth => EditorGUIUtility.labelWidth;
 		private static float SingleLineHeight => EditorGUIUtility.singleLineHeight;
 	
-		public static void CreateField(Rect rect, float offsetY, SerializedProperty property, string propertyName)
+		public static void CreateField(Rect rect, float offsetY, SerializedProperty property)
 		{
 			EditorGUI.LabelField(
 				new Rect(
@@ -18,9 +18,9 @@ namespace EssentialPackages.CurveEditor.Editor.Utils
 					LabelWidth - 5,
 					SingleLineHeight
 				),
-				ObjectNames.NicifyVariableName(propertyName)
+				ObjectNames.NicifyVariableName(property.name)
 			);
-				
+
 			EditorGUI.PropertyField(
 				new Rect(
 					rect.x + LabelWidth,
