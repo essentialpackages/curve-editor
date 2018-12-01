@@ -6,9 +6,9 @@ namespace EssentialPackages.CurveEditor.Editor
 {
 	/// <inheritdoc />
 	/// <summary>
-	/// Custom inspector for <see cref="CurveList"/>.
+	/// Custom inspector for <see cref="CurveSpecification"/>.
 	/// </summary>
-	[CustomEditor(typeof(CurveList))]
+	[CustomEditor(typeof(CurveSpecification))]
 	public class CurveListInspector : UnityEditor.Editor
 	{
 		/// <summary>

@@ -6,8 +6,8 @@ namespace EssentialPackages.CurveEditor.Editor
 	/// <summary>
 	/// Redistributable object which holds animation curves.
 	/// </summary>
-	[CreateAssetMenu(fileName = "CurveList", menuName = "Essential/CurveEditor/CurveList", order = 1)]
-	public class CurveList : ScriptableObject
+	[CreateAssetMenu(fileName = "CurveSpecification", menuName = "Essential/CurveEditor/CurveSpecification", order = 1)]
+	public class CurveSpecification : ScriptableObject
 	{
 		/// <summary>
 		/// Array of labeled animation curves.
