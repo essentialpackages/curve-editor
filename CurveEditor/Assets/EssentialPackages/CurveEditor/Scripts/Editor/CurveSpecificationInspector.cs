@@ -9,7 +9,7 @@ namespace EssentialPackages.CurveEditor.Editor
 	/// Custom inspector for <see cref="CurveSpecification"/>.
 	/// </summary>
 	[CustomEditor(typeof(CurveSpecification))]
-	public class CurveListInspector : UnityEditor.Editor
+	public class CurveSpecificationInspector : UnityEditor.Editor
 	{
 		/// <summary>
 		/// Makes an array or list reorderable within the Unity inspector.
@@ -50,6 +50,7 @@ namespace EssentialPackages.CurveEditor.Editor
 			};
 		}
 
+		/// <inheritdoc />
 		/// <summary>
 		/// Allow modifications inside reorderable list.
 		/// </summary>
